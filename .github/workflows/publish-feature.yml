@@ -1,0 +1,22 @@
+name: Publish Dev Container Feature
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publish Features to GHCR
+        uses: devcontainers-community/publish-feature@v1
+        with:
+          base-path-to-features: src
+          oci-registry: ghcr.io
+
