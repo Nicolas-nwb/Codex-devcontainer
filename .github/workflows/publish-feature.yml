@@ -19,7 +19,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: Debug repo tree
         run: ls -R
-      - name: Publish Features to GHCR
-        uses: devcontainers-community/publish-feature@v1
+      - name: Publish Features to GHCR (official action)
+        uses: devcontainers/action@v1
         with:
-          path: src/codex-cli
+          publish-features: 'true'
+          base-path-to-features: './src'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
