@@ -22,4 +22,4 @@ jobs:
       - name: Publish Features to GHCR
         uses: devcontainers-community/publish-feature@v1
         with:
-          path: src
+          path: src/codex-cli
