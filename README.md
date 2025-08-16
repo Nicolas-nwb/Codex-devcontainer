@@ -12,6 +12,14 @@ Pour utiliser la feature dans un `devcontainer.json`:
 }
 ```
 
+Depuis GHCR (publique) après publication:
+
+```json
+"features": {
+  "ghcr.io/nicolas-nwb/features/codex-cli:1": {}
+}
+```
+
 Optionnel: exportez vos variables d'environnement côté hôte avant d'ouvrir le conteneur:
 
 ```bash
