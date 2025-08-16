@@ -17,8 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Debug repo tree
+        run: ls -R
       - name: Publish Features to GHCR
         uses: devcontainers-community/publish-feature@v1
         with:
-          base-path-to-features: src
-          oci-registry: ghcr.io
+          path: src
