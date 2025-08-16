@@ -1,0 +1,17 @@
+{
+    "name": "Codex CLI",
+    "id": "codex-cli",
+    "version": "1.0.0",
+    "description": "Installs the OpenAI Codex CLI globally",
+    "options": {},
+    "documentationURL": "https://help.openai.com/en/articles/11096431-openai-codex-cli-getting-started",
+    "licenseURL": "https://opensource.org/license/mit",
+    "customizations": {
+        "vscode": {
+            "extensions": []
+        }
+    },
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/node"
+    ]
+}
