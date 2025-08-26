@@ -46,3 +46,17 @@ bash scripts/build_and_test.sh
 ## Crédits
 
 Ce projet est largement inspiré de Claude Code, un projet sous licence MIT par Anthropic PBC.
+
+## Installation via Codex (commande à copier-coller)
+
+Collez cette commande dans votre terminal. Elle envoie un prompt au CLI Codex pour générer un script d’installation, puis l’exécute.
+
+```bash
+codex --prompt "$(cat <<'EOF'
+Ajoute la feature codex-cli à mon Dev Container. Crée ou modifie .devcontainer/devcontainer.json pour inclure:
+\"features\": {
+  \"ghcr.io/nicolas-nwb/codex-devcontainer/codex-cli:1\": {}
+}
+EOF
+)"
+```
