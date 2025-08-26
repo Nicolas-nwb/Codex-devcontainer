@@ -16,7 +16,7 @@ Depuis GHCR (publique) après publication:
 
 ```json
 "features": {
-  "ghcr.io/nicolas-nwb/features/codex-cli:1": {}
+  "ghcr.io/nicolas-nwb/codex-devcontainer/codex-cli:latest": {}
 }
 ```
 
