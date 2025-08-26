@@ -16,7 +16,7 @@ Depuis GHCR (publique) après publication:
 
 ```json
 "features": {
-  "ghcr.io/nicolas-nwb/codex-devcontainer/codex-cli:latest": {}
+  "ghcr.io/nicolas-nwb/features/codex-cli:1": {}
 }
 ```
 
@@ -27,6 +27,48 @@ export OPENAI_API_KEY="..."
 export OPENAI_ORG_ID="..."
 export OPENAI_ENGINE_ID="..."
 ```
+
+## Installation rapide (copier-coller)
+
+Collez ce script à la racine de votre projet pour ajouter la Feature et reconstruire le Dev Container.
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Ajoute la Feature Codex CLI et reconstruit le Dev Container
+FEATURE="ghcr.io/nicolas-nwb/features/codex-cli:1"
+mkdir -p .devcontainer
+
+# Créer ou mettre à jour .devcontainer/devcontainer.json
+if [ ! -f .devcontainer/devcontainer.json ]; then
+  cat > .devcontainer/devcontainer.json <<EOF
+{
+  "features": {
+    "$FEATURE": {}
+  }
+}
+EOF
+else
+  if command -v jq >/dev/null 2>&1; then
+    tmp="$(mktemp)"
+    jq --arg f "$FEATURE" '.features = (.features // {}) | .features[$f] = {}' \
+      .devcontainer/devcontainer.json > "$tmp"
+    mv "$tmp" .devcontainer/devcontainer.json
+  else
+    echo "Installez 'jq' ou ajoutez manuellement la Feature: $FEATURE" >&2
+  fi
+fi
+
+# Reconstruire le Dev Container (CLI installé ou via npx)
+if command -v devcontainer >/dev/null 2>&1; then
+  devcontainer up --workspace-folder .
+else
+  npx --yes @devcontainers/cli up --workspace-folder .
+fi
+```
+
+Astuce: sous VS Code, vous pouvez aussi utiliser « Dev Containers: Rebuild Container Without Cache ».
 
 ## Tests (Docker)
 
